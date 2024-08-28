@@ -1,0 +1,39 @@
+services:
+  db:
+    container_name: postgres-2
+    image: postgres
+    environment:
+      POSTGRES_USER: andrea
+      POSTGRES_PASSWORD: italiano
+      PGDATA: /data/postgres
+      POSTGRES_DB: webscraping
+    volumes:
+      - db:/var/lib/postgresql/data  # Mount volume per persistenza dati
+    ports:
+      - "5434:5432"
+    networks:
+      - db-network
+    restart: unless-stopped
+
+#  backend:
+#    build: ./be
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5434/webscraping
+#      SPRING_DATASOURCE_USERNAME: andrea
+#      SPRING_DATASOURCE_PASSWORD: italiano
+#    depends_on:
+#      - db
+#
+#  frontend:
+#    build: ./fe
+#    ports:
+#      - "4200:8080"  # Corretto, mapping host port 4200 to container port 8080
+
+networks:
+  db-network:
+    driver: bridge
+
+volumes:
+  db:
