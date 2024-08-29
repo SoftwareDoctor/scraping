@@ -2,8 +2,8 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-28 12:07:30
- * @FilePath: src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
+ * @LastEditTime: 2024-08-29 12:38:06
+ * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
 package it.softwaredoctor.scraping.controller;
@@ -57,5 +57,28 @@ public class JobListingController {
         return ResponseEntity.ok(jobListingDto);
     }
 
+    @PostMapping("/job")
+    public ResponseEntity<Void> updateJobListing(@RequestBody JobListingDto jobListing) {
+        try {
+            jobListingservice.updateJobListing(jobListing);
+            return ResponseEntity.noContent().build();
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deleteAllJobListings(@PathVariable UUID uuid) {
+        jobListingservice.deleteByUUID(uuid);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @GetMapping("/search/")
+    public ResponseEntity<List<JobListingDto>> searchJobListingDto (@RequestParam String title) {
+        List<JobListingDto> jobListings = jobListingservice.listaJobListings(title);
+        return ResponseEntity.ok(jobListings);
+    }
+    
 }
 
