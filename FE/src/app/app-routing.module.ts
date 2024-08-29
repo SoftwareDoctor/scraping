@@ -9,11 +9,12 @@ import { UpdateJoblistingComponent } from './pages/update-joblisting/update-jobl
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
  const routes: Routes = [
-  { path: 'home', component: LayoutComponent},
+
   {
     path: '',
     component: LayoutComponent,
     children: [
+        { path: 'home', component: HomeComponent },
       { path: 'jobs/new', component: CreateJoblinkComponent },
       { path: 'jobs/all', component: JobListingItemComponent },
       { path: 'jobs/edit/:uuid', component: UpdateJoblistingComponent }

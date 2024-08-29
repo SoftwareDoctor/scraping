@@ -7,11 +7,11 @@
   <title>{{ title }}</title>
   <link rel="stylesheet" href="layout.component.css">
 </head>
-<body class="d-flex flex-column wrapper">
+<body>
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img src="assets/logo.png" alt="Logo" class="navbar-logo"> <!-- Aggiungi il logo -->
+      <img src="assets/logo.png" alt="Logo" class="navbar-logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,22 +24,11 @@
     </div>
   </nav>
 </header>
+
 <main class="layout-container">
-  <div class="main-content">
-    <!-- Card per il pulsante Create -->
-    <div class="card">
-      <button class="card-button" routerLink="/create" routerLinkActive="active-link">Create</button>
-    </div>
-    <!-- Contenitore per l'immagine -->
-    <div class="containerImage">
-      <img src="https://via.placeholder.com/800x400" alt="Placeholder Image"> <!-- Modifica l'URL dell'immagine secondo le tue esigenze -->
-    </div>
-    <!-- Card per il pulsante Search -->
-    <div class="card">
-      <button class="card-button" routerLink="/search" routerLinkActive="active-link">Search</button>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </main>
+
 <footer class="footer d-flex align-items-center">
   <img src="assets/logo.png" alt="Logo" class="footer-logo">
   <div class="containerFooter">

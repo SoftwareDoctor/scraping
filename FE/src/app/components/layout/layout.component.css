@@ -1,89 +1,36 @@
-/* Contenitore principale per il layout */
 .layout-container {
   display: flex;
   flex-direction: column;
   margin: 0;
-  height: calc(98vh - 94px); /* Adatta l'altezza al resto della finestra */
+  height: calc(96vh - 92px);
 }
 
-/* Navbar */
 .navbar {
-  background-color: #007bff; /* Colore blu per la navbar */
-  padding: 10px; /* Aggiunge spazio sopra e sotto il contenuto della navbar */
+  background-color: #007bff;
+  padding: 10px;
   display: flex;
-  justify-content: center; /* Centra il logo nella navbar */
+  justify-content: center;
 }
 
 .navbar-logo {
-  max-height: 40px; /* Dimensione massima del logo nella navbar */
+  max-height: 40px;
 }
 
 .navbar .form-inline {
-  margin-left: auto; /* Allinea il form di ricerca a destra */
+  margin-left: auto;
 }
 
-/* Contenitore per le card e l'immagine */
-.main-content {
-  display: flex;
-  justify-content: space-around; /* Spaziatura tra le card */
-  align-items: center; /* Allinea verticalmente le card e l'immagine */
-  padding: 20px; /* Aggiunge un po' di spazio interno */
-}
-
-/* Stile per le card */
-.card {
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #fff;
-}
-
-/* Pulsanti dentro le card */
-.card-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #fff;
-  background-color: #007bff; /* Cambia il colore secondo il tuo tema */
-  transition: background-color 0.3s;
-}
-
-.card-button:hover {
-  background-color: #0056b3; /* Cambia il colore al passaggio del mouse */
-}
-
-/* Contenitore per l'immagine */
-.containerImage {
-  text-align: center;
-  margin: 60px auto; /* Centra l'immagine e aggiunge margine */
-}
-
-.containerImage img {
-  max-width: 100%;
-  height: auto;
-  max-height: 400px; /* Imposta un limite alla dimensione massima dell'immagine */
-}
-
-/* Footer */
 .footer {
-  background-color: #007bff; /* Colore blu per il footer */
-  color: #fff; /* Colore del testo nel footer */
+  background-color: #007bff;
+  color: #fff;
   display: flex;
   align-items: center;
-  padding: 10px 20px; /* Aggiunge spazio sopra e sotto il contenuto del footer */
+  padding: 10px 20px;
 }
 
 .footer-logo {
-  max-height: 30px; /* Dimensione massima del logo nel footer */
-  margin-right: 10px; /* Spazio tra il logo e il testo del footer */
+  max-height: 30px;
+  margin-right: 10px;
 }
 
 .containerFooter {
@@ -91,10 +38,9 @@
   align-items: center;
 }
 
-/* Pulsante Search */
 .btn-outline-light {
   border: none;
-  background-color: #fff; /* Colore del bottone nella navbar */
-  color: #007bff; /* Colore del testo del bottone nella navbar */
+  background-color: #fff;
+  color: #007bff;
   transition: background-color 0.3s;
 }
