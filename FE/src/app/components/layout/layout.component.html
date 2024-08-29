@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="layout.component.css">
+</head>
+<body class="d-flex flex-column wrapper">
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" alt="Logo" class="navbar-logo"> <!-- Aggiungi il logo -->
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="form-inline ml-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+<main class="layout-container">
+  <div class="main-content">
+    <!-- Card per il pulsante Create -->
+    <div class="card">
+      <button class="card-button" routerLink="/create" routerLinkActive="active-link">Create</button>
+    </div>
+    <!-- Contenitore per l'immagine -->
+    <div class="containerImage">
+      <img src="https://via.placeholder.com/800x400" alt="Placeholder Image"> <!-- Modifica l'URL dell'immagine secondo le tue esigenze -->
+    </div>
+    <!-- Card per il pulsante Search -->
+    <div class="card">
+      <button class="card-button" routerLink="/search" routerLinkActive="active-link">Search</button>
+    </div>
+  </div>
+</main>
+<footer class="footer d-flex align-items-center">
+  <img src="assets/logo.png" alt="Logo" class="footer-logo">
+  <div class="containerFooter">
+    <span class="text-muted">Made By SoftwareDoctor</span>
+  </div>
+</footer>
+</body>
+</html>
