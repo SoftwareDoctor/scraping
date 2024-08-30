@@ -2,8 +2,8 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:40:50
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-28 12:03:02
- * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobLinkService.java
+ * @LastEditTime: 2024-08-30 11:09:40
+ * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/service/JobLinkService.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
 package it.softwaredoctor.scraping.service;
@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,12 @@ public class JobLinkService {
 
     @Transactional
     public UUID saveLink(JobLinkDto jobLinkDto) throws IOException {
+        
         try {
+            Optional<JobLink> existingJobLinkOpt = jobLinkRepository.findByStringaLink(jobLinkDto.getStringaLink());
+            if (existingJobLinkOpt.isPresent()) {
+                throw new RuntimeException("JobLink already exists with the provided URL");
+            }
             JobLink joblink = JobLink.builder()
                     .stringaLink(jobLinkDto.getStringaLink())
                     .build();

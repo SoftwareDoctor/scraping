@@ -1,0 +1,29 @@
+/* Stile per la sezione di errore */
+.alert {
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Stile per errori generali */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+/* Stile per messaggi di errore con icona */
+.alert-danger-icon {
+  display: flex;
+  align-items: center;
+}
+
+.alert-danger-icon .icon {
+  margin-right: 10px;
+  color: #721c24;
+}
+
+.alert-danger-icon .message {
+  flex: 1;
+}

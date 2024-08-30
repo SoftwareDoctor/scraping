@@ -1,1 +1,35 @@
-<p>create-joblink works!</p>
+<div class="container">
+  <h2>Crea un Nuovo Job Link</h2>
+
+  <form [formGroup]="jobLinkForm" (ngSubmit)="onSubmit()">
+    <!-- Campo per la stringaLink -->
+    <div class="form-group">
+      <label for="stringaLink">Link</label>
+      <input
+        id="stringaLink"
+        type="text"
+        formControlName="stringaLink"
+        class="form-control"
+        placeholder="Inserisci il link"
+      />
+      <div *ngIf="jobLinkForm.get('stringaLink')?.invalid && (jobLinkForm.get('stringaLink')?.touched || jobLinkForm.get('stringaLink')?.dirty)" class="text-danger">
+        <div *ngIf="jobLinkForm.get('stringaLink')?.errors?.['required']">Il campo Link è obbligatorio.</div>
+      </div>
+    </div>
+
+    <!-- Pulsante di invio -->
+    <button type="submit" class="btn btn-primary" [disabled]="jobLinkForm.invalid">Save</button>
+  </form>
+
+  <!-- Mostra il messaggio di errore -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <div class="alert-danger-icon">
+      <div class="icon">
+        <i class="fa fa-exclamation-circle"></i> <!-- Icona di errore -->
+      </div>
+      <div class="message">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

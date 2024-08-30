@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:41:44
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-29 12:34:05
+ * @LastEditTime: 2024-08-30 09:40:18
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -69,7 +69,7 @@ public class JobListingservice {
     }
     
     public void deleteByUUID(UUID uuidJobListing) {
-        jobListingRepository.deleteByUUIDJobListing(uuidJobListing);
+        jobListingRepository.deleteByUuid (uuidJobListing);
     }
     
     public List<JobListingDto> listaJobListings (String title){

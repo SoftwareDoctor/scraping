@@ -9,22 +9,22 @@ import { SearchByNameComponent } from './pages/search-by-name/search-by-name.com
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Reindirizza a 'home' direttamente
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   {
     path: '',
     component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'search/name/:name', component: SearchByNameComponent },
-      { path: 'jobs/new', component: CreateJoblinkComponent },
-      { path: 'jobs/all', component: JobListingItemComponent },
-      { path: 'jobs/edit/:uuid', component: UpdateJoblistingComponent }
+      { path: 'spy/search/:name', component: SearchByNameComponent },
+      { path: 'create', component: CreateJoblinkComponent },
+      { path: 'spy/all', component: JobListingItemComponent },
+      { path: 'spy/:uuid', component: UpdateJoblistingComponent }
     ]
   },
 
   { path: 'confirm', component: ConfirmationDialogComponent },
-  { path: '**', redirectTo: '' } // Gestisce tutte le rotte non valide
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

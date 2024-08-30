@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:38:00
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-29 12:38:07
+ * @LastEditTime: 2024-08-30 11:09:08
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/repository/JobLinkRepository.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -18,4 +18,6 @@ import java.util.Optional;
 public interface JobLinkRepository extends JpaRepository<JobLink, Long> {
 
     Optional<JobLink> findByStringaLink(String stringaLink);
+    
+    
 }

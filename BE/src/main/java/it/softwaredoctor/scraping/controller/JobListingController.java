@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-29 12:38:06
+ * @LastEditTime: 2024-08-30 11:03:48
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -22,6 +22,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/spy")
 @RequiredArgsConstructor
@@ -75,8 +76,8 @@ public class JobListingController {
     }
     
     @GetMapping("/search/")
-    public ResponseEntity<List<JobListingDto>> searchJobListingDto (@RequestParam String title) {
-        List<JobListingDto> jobListings = jobListingservice.listaJobListings(title);
+    public ResponseEntity<List<JobListingDto>> searchJobListingDto (@RequestParam String name) {
+        List<JobListingDto> jobListings = jobListingservice.listaJobListings(name);
         return ResponseEntity.ok(jobListings);
     }
     
