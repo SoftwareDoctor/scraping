@@ -3,11 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateJoblinkComponent } from './pages/create-joblink/create-joblink.component';
-import { JobListingItemComponent } from './components/job-listing-item/job-listing-item.component';
 import { UpdateJoblistingComponent } from './pages/update-joblisting/update-joblisting.component';
 import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-
+import { JobListingComponent } from './pages/job-listing/job-listing.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
@@ -16,9 +15,9 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'spy/search/:name', component: SearchByNameComponent },
+      { path: 'search/:name', component: SearchByNameComponent },
       { path: 'create', component: CreateJoblinkComponent },
-      { path: 'spy/all', component: JobListingItemComponent },
+      { path: 'all', component: JobListingComponent },
       { path: 'spy/:uuid', component: UpdateJoblistingComponent }
     ]
   },

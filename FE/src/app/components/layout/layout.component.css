@@ -1,8 +1,8 @@
 .navbar .navbar-brand.custom-navbar-text {
-  font-size: 1.5rem; /* Dimensione del font */
-  font-weight: bold; /* Testo in grassetto */
-  color: #2A446B; /* Colore del testo */
-  margin-left: 170px; /* Spazio tra il testo e il logo */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2A446B;
+  margin-left: 170px;
 }
 
 

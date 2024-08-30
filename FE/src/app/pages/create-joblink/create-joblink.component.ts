@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobListingService } from '../../services/joblisting.service';
 import { JobLink } from '../../models/joblink/joblink';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-joblink',
@@ -29,16 +29,13 @@ export class CreateJoblinkComponent {
 
            this.jobListingService.createJobLink(newJobLink).subscribe({
              next: () => {
-               // Gestisci la risposta positiva
                alert('Job link creato con successo!');
-               this.router.navigate(['/home']); // Reindirizza alla homepage
+               this.router.navigate(['/home']);
              },
              error: (err) => {
-               // Gestisci l'errore
                console.error('Errore durante la creazione del job link:', err);
                this.errorMessage = 'Errore durante la creazione del job link. Controlla la console per dettagli.';
 
-               // Specifica il messaggio se il link esiste già
                if (err.error && err.error.includes('JobLink already exists')) {
                  this.errorMessage = 'Il link esiste già nel database.';
                } else {

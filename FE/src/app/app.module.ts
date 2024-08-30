@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CreateJoblinkComponent } from './pages/create-joblink/create-joblink.component';
-import { JobListingItemComponent } from './components/job-listing-item/job-listing-item.component';
+import { JobListingComponent } from './pages/job-listing/job-listing.component';
 import { UpdateJoblistingComponent } from './pages/update-joblisting/update-joblisting.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
@@ -20,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     HomeComponent,
     CreateJoblinkComponent,
-    JobListingItemComponent,
+    JobListingComponent,
     UpdateJoblistingComponent,
     ConfirmationDialogComponent,
     SearchByNameComponent

@@ -1,8 +1,6 @@
 <div class="container">
   <h2>Crea un Nuovo Job Link</h2>
-
   <form [formGroup]="jobLinkForm" (ngSubmit)="onSubmit()">
-    <!-- Campo per la stringaLink -->
     <div class="form-group">
       <label for="stringaLink">Link</label>
       <input
@@ -16,16 +14,12 @@
         <div *ngIf="jobLinkForm.get('stringaLink')?.errors?.['required']">Il campo Link è obbligatorio.</div>
       </div>
     </div>
-
-    <!-- Pulsante di invio -->
     <button type="submit" class="btn btn-primary" [disabled]="jobLinkForm.invalid">Save</button>
   </form>
-
-  <!-- Mostra il messaggio di errore -->
   <div *ngIf="errorMessage" class="alert alert-danger">
     <div class="alert-danger-icon">
       <div class="icon">
-        <i class="fa fa-exclamation-circle"></i> <!-- Icona di errore -->
+        <i class="fa fa-exclamation-circle"></i>
       </div>
       <div class="message">
         {{ errorMessage }}
