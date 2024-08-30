@@ -14,23 +14,23 @@ export class JobListingService {
 
   constructor(private http: HttpClient) { }
 
-  createJobLink(joblink: JobLink): Observable<void> {
+ public createJobLink(joblink: JobLink): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/new`, joblink);
   }
 
-  searchJobListings(searchParams: HttpParams): Observable<JobLink[]> {
+ public searchJobListings(searchParams: HttpParams): Observable<JobLink[]> {
     return this.http.get<JobLink[]>(`${this.apiUrl}/search/`, { params: searchParams });
   }
 
-  updateJobLink(jobId: string, joblink: JobLink): Observable<void> {
+ public updateJobLink(jobId: string, joblink: JobLink): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/job/${jobId}`, joblink);
   }
 
-  deleteJobLink(jobId: string): Observable<void> {
+  public deleteJobLink(jobId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${jobId}`);
   }
 
-  getAllJobListings(): Observable<JobListing[]> {
+  public getAllJobListings(): Observable<JobListing[]> {
     return this.http.get<JobListing[]>(`${this.apiUrl}/`);
   }
 }

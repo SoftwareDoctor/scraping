@@ -1,1 +1,34 @@
-<p>job-listing works!</p>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="table-container">
+    <h2 class="mb-4 text-center">Job Listings</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th colspan="2">Technologies</th> <!-- Colspan per estendere su due colonne -->
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let jobListing of joblistings">
+        <td>{{ jobListing.title }}</td>
+        <td colspan="2">
+          <!-- Div per visualizzare tutte le tecnologie -->
+          <div class="technologies-container">
+              <span *ngFor="let tech of jobListing.technologies" class="badge bg-primary me-1">
+                {{ tech.name }}
+              </span>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="updateJobListing(jobListing)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteJobLink(jobListing)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="warningMessage" class="alert alert-success mt-3">
+      {{ warningMessage }}
+    </div>
+  </div>
+</div>
