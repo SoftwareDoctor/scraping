@@ -7,6 +7,9 @@ import { UpdateJoblistingComponent } from './pages/update-joblisting/update-jobl
 import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { JobListingComponent } from './pages/job-listing/job-listing.component';
+import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblisting.component';
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
@@ -18,7 +21,8 @@ const routes: Routes = [
       { path: 'search/:name', component: SearchByNameComponent },
       { path: 'create', component: CreateJoblinkComponent },
       { path: 'all', component: JobListingComponent },
-      { path: 'spy/:uuid', component: UpdateJoblistingComponent }
+      { path: 'singlejoblistingupdate/:id', component: UpdateJoblistingComponent },
+      { path: 'singlejoblisting/:id', component: SinglejoblistingComponent }
     ]
   },
 

@@ -33,4 +33,9 @@ export class JobListingService {
   public getAllJobListings(): Observable<JobListing[]> {
     return this.http.get<JobListing[]>(`${this.apiUrl}/`);
   }
+
+  public getJobListingById(jobId: string): Observable<JobListing> {
+    return this.http.get<JobListing>(`${this.apiUrl}/${jobId}`);
+  }
 }
+

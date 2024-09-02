@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-30 11:03:48
+ * @LastEditTime: 2024-09-02 08:37:32
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -53,7 +53,7 @@ public class JobListingController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<JobListingDto> getJobListing(UUID uuid) {
+    public ResponseEntity<JobListingDto> getJobListing(@PathVariable UUID uuid) {
         JobListingDto jobListingDto = jobListingservice.getJobListing(uuid);
         return ResponseEntity.ok(jobListingDto);
     }

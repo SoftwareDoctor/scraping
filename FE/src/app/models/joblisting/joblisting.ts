@@ -1,20 +1,18 @@
-import { Technology } from '../technology/technology';
-
 export class JobListing {
-    uuid: string;
-    title: string;
-    jobLink: string;  // Cambiato da JobLink a string
-    technologies: Technology[];
+  uuid: string;
+  title: string;
+  jobLink: string;
+  technologies: string[]; // Modificato per accettare un array di stringhe
 
-    constructor(
-        uuid: string,
-        title: string,
-        jobLink: string,  // Cambiato da JobLink a string
-        technologies: Technology[]
-    ) {
-        this.uuid = uuid;
-        this.title = title;
-        this.jobLink = jobLink;  // Cambiato da JobLink a string
-        this.technologies = technologies;
-    }
+  constructor(
+    uuid: string,
+    title: string,
+    jobLink: string,
+    technologies: string[] // Modificato per accettare un array di stringhe
+  ) {
+    this.uuid = uuid;
+    this.title = title;
+    this.jobLink = jobLink;
+    this.technologies = technologies;
+  }
 }

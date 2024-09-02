@@ -2,8 +2,8 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:42:17
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-28 12:03:01
- * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobListingScrapingService.java
+ * @LastEditTime: 2024-09-02 09:40:59
+ * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/service/JobListingScrapingService.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
 package it.softwaredoctor.scraping.service;
@@ -13,11 +13,14 @@ import it.softwaredoctor.scraping.repository.JobListingRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.jsoup.select.Selector.select;
 
 
 @RequiredArgsConstructor
@@ -39,12 +42,35 @@ public class JobListingScrapingService {
     public List<String> extractTechnologiesFromUrl(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         List<String> foundTechnologies = new ArrayList<>();
-        String htmlContent = doc.html();
-        String textContent = Jsoup.parse(htmlContent).text();
+//        String htmlContent = doc.html();
+//        String textContent = Jsoup.parse(htmlContent).text();
+      
+//        Elements links = doc.clearAttributes().getElementsByAttribute("a[href]");
+//        for (Element link : links) {
+//            link.text("");
+//        }
+//        Document cleanDoc = Jsoup.parse(links.outerHtml());
+//        String htmlSenzaLink = cleanDoc.html();
+//        String cleanHtmlContent = cleanDoc.html();
+
+//        for (Element link : doc.select("a[href]")) {
+//            link.removeAttr("href");
+//        }
+//        doc.select("link").remove();
+//        for (Element a : doc.select("a[href]")) {
+//            a.removeAttr("href");
+//        }
+//
+//        String htmlContent = doc.html();
+//        System.out.println("htmlContent: " +htmlContent);
+
+        Element descriptionDiv = doc.selectFirst("div.description__text.description__text--rich");
+        String descriptionText = descriptionDiv.text();
+        System.out.println("htmlContent: " +descriptionText);
         List<ListaTech> listaTech = listTechService.getAllTechnologies();
         for (ListaTech techName : listaTech) {
             String techNameLower = techName.getNameTechnology().toLowerCase();
-            if (htmlContent.toLowerCase().contains(techNameLower)) {
+            if (descriptionText.toLowerCase().contains(techNameLower)) {
                 foundTechnologies.add(techName.getNameTechnology());
             } else {
                 System.out.println("Tecnologia non trovata nel testo: " + techNameLower);

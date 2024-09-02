@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:36:28
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-29 12:06:01
+ * @LastEditTime: 2024-08-30 14:14:30
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/dto/JobListingDto.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -22,7 +22,7 @@ import java.util.UUID;
 public class JobListingDto {
     private UUID uuid;
     private String title;
-    private String jobLink;
+    private String jobLink; 
     private List<String> technologies;
 
     public static JobListingDto toDto(JobListing jobListing) {

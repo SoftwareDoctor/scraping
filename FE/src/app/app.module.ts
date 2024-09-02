@@ -13,6 +13,7 @@ import { UpdateJoblistingComponent } from './pages/update-joblisting/update-jobl
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblisting.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     JobListingComponent,
     UpdateJoblistingComponent,
     ConfirmationDialogComponent,
-    SearchByNameComponent
+    SearchByNameComponent,
+    SinglejoblistingComponent
   ],
   imports: [
     BrowserModule,
