@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-02 08:37:32
+ * @LastEditTime: 2024-09-03 10:08:49
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -58,9 +58,10 @@ public class JobListingController {
         return ResponseEntity.ok(jobListingDto);
     }
 
-    @PostMapping("/job")
-    public ResponseEntity<Void> updateJobListing(@RequestBody JobListingDto jobListing) {
+    @PutMapping("/job/{uuid}")
+    public ResponseEntity<Void> updateJobListing(@PathVariable UUID uuid, @RequestBody JobListingDto jobListing) {
         try {
+            jobListing.setUuid(uuid);
             jobListingservice.updateJobListing(jobListing);
             return ResponseEntity.noContent().build();
         } catch (IOException e) {
@@ -70,14 +71,14 @@ public class JobListingController {
     
     
     @DeleteMapping("/{uuid}")
-    public ResponseEntity<Void> deleteAllJobListings(@PathVariable UUID uuid) {
+    public ResponseEntity<Void> deleteJobListing(@PathVariable UUID uuid) {
         jobListingservice.deleteByUUID(uuid);
         return ResponseEntity.noContent().build();
     }
-    
+
     @GetMapping("/search/")
-    public ResponseEntity<List<JobListingDto>> searchJobListingDto (@RequestParam String name) {
-        List<JobListingDto> jobListings = jobListingservice.listaJobListings(name);
+    public ResponseEntity<List<JobListingDto>> searchJobListingDto(@RequestParam (value = "title", required = true)  String title) {
+        List<JobListingDto> jobListings = jobListingservice.listaJobListings(title);
         return ResponseEntity.ok(jobListings);
     }
     

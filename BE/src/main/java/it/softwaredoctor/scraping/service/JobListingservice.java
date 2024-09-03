@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:41:44
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-30 09:40:18
+ * @LastEditTime: 2024-09-03 10:16:09
  * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -15,6 +15,8 @@ import it.softwaredoctor.scraping.model.Technology;
 import it.softwaredoctor.scraping.repository.JobLinkRepository;
 import it.softwaredoctor.scraping.repository.JobListingRepository;
 import it.softwaredoctor.scraping.repository.TechnologyRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,41 +49,57 @@ public class JobListingservice {
                 .map(JobListingDto::toDto)
                 .orElseThrow(() -> new RuntimeException("JobListing not found"));
     }
-    
+
     public void updateJobListing(JobListingDto jobListing) throws IOException {
         JobListing existingJobListing = jobListingRepository.findByUuid(jobListing.getUuid())
-               .orElseThrow(() -> new RuntimeException("JobListing not found"));
+                .orElseThrow(() -> new EntityNotFoundException("JobListing not found"));
+
         existingJobListing.setTitle(jobListing.getTitle());
-        if(jobListing.getTechnologies() != null) {
-            List<Technology> updatedTechnologies = jobListing.getTechnologies().stream()
-         .map(technologyName -> technologyRepository.findByName(technologyName)
-                 .orElseThrow(() -> new RuntimeException("Technology not found: " + technologyName)))
-                    .collect(Collectors.toList());
-            existingJobListing.setTechnologies(updatedTechnologies);
+
+        List<Technology> currentTechnologies = new ArrayList<>(existingJobListing.getTechnologies());
+        existingJobListing.getTechnologies().clear();
+
+        if (jobListing.getTechnologies() != null) {
+            for (String technologyName : jobListing.getTechnologies()) {
+                Technology technology = technologyRepository.findByName(technologyName)
+                        .orElseThrow(() -> new EntityNotFoundException("Technology not found: " + technologyName));
+                existingJobListing.getTechnologies().add(technology);
+                technology.setJobListing(existingJobListing);
+            }
         }
+
         if (jobListing.getJobLink() != null) {
             JobLink jobLink = jobLinkRepository.findByStringaLink(jobListing.getJobLink())
-                    .orElseThrow(() -> new RuntimeException("JobLink not found: " + jobListing.getJobLink()));
+                    .orElseThrow(() -> new EntityNotFoundException("JobLink not found: " + jobListing.getJobLink()));
             existingJobListing.setJobLink(jobLink);
         }
-        
         jobListingRepository.save(existingJobListing);
     }
-    
-    public void deleteByUUID(UUID uuidJobListing) {
-        jobListingRepository.deleteByUuid (uuidJobListing);
+
+
+    @Transactional
+    public void deleteByUUID(UUID uuid) {
+        jobListingRepository.deleteByUuid(uuid);
     }
-    
-    public List<JobListingDto> listaJobListings (String title){
+
+    public List<JobListingDto> listaJobListings(String title) {
         List<JobListing> lista = jobListingRepository.findByTitleContaining(title);
 
-        List<JobListingDto> list = new ArrayList<>();
-        
+        List<JobListingDto> listaDto = new ArrayList<>();
         for (JobListing jobListing : lista) {
             JobListingDto dto = JobListingDto.toDto(jobListing);
-            list.add(dto);
+            listaDto.add(dto);
         }
-        return list; 
+        return listaDto;
     }
+    
+
+//    public List<JobListingDto> jobListingsByTitle(String title){
+//        List<JobListing> jobListings = jobListingRepository.findByTitleContaining(title);
+//
+//        return jobListings.stream()
+//               .map(JobListingDto::toDto)
+//               .collect(Collectors.toList());
+//    }
 }
 
