@@ -60,12 +60,11 @@ export class UpdateJoblistingComponent implements OnInit {
    if (this.updateForm.valid) {
      const updatedJobListing: JobListing = {
        ...this.updateForm.value,
-       uuid: this.route.snapshot.paramMap.get('id') // Ottieni l'ID dal percorso
+       uuid: this.route.snapshot.paramMap.get('id')
      };
 
      this.jobListingService.updateJobListing(updatedJobListing).subscribe(
        () => {
-         // Redirezione alla lista dei job listings dopo l'update
          this.router.navigate(['/all']);
        },
        error => {

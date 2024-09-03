@@ -13,12 +13,10 @@ export class ConfirmationDialogComponent {
   constructor(public activeModal: NgbActiveModal) { }
 
   public onConfirm(): void {
-    // Chiudi la modale e restituisci 'yes'
     this.activeModal.close('yes');
   }
 
   public onCancel(): void {
-    // Chiudi la modale senza conferma
     this.activeModal.dismiss('no');
   }
 }

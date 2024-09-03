@@ -30,15 +30,6 @@ export class JobListingComponent implements OnInit {
     });
   }
 
-
-//   public deleteJobLink(jobListing: JobListing): void {
-//     this.jobListingService.deleteJobLink(jobListing.uuid).subscribe(() => {
-//       this.joblistings = this.joblistings.filter((jl: JobListing) => jl.uuid !== jobListing.uuid);
-//       this.warningMessage = 'Job listing deleted successfully!';
-//       setTimeout(() => this.warningMessage = null, 3000);
-//     });
-//   }
-
   public deleteJobLink(id: string): void {
 
     this.jobListingService.deleteJobLink(id).subscribe(
@@ -51,11 +42,6 @@ export class JobListingComponent implements OnInit {
 
     );
   }
-
-
-//   public updateJobListing(jobListing: JobListing): void {
-//     this.router.navigate(['/job/', jobListing.uuid]);
-//   }
 
 public openConfirmationDialog(jobListing: JobListing): void {
     const modalRef = this.modalService.open(ConfirmationDialogComponent);

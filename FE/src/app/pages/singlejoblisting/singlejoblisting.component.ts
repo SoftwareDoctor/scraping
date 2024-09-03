@@ -24,9 +24,6 @@ export class SinglejoblistingComponent implements OnInit{
         next: (jobListing: JobListing) => {
           this.jobListing = jobListing;
         },
-//         error: (err) => {
-//           console.error('Error fetching job listing', err);
-//         }
       });
     }
   }

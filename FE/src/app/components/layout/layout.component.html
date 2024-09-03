@@ -20,12 +20,10 @@
       <div class="mx-auto d-flex justify-content-center flex-grow-1">
         <a class="navbar-brand custom-navbar-text">Job Spy</a>
       </div>
-      <input type="text" placeholder="Cerca per Job Title" #filter>
-
-      <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-
-      <!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search by Job Title">-->
-<!--        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>-->
+      <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+        <input formControlName="searchTerm" />
+        <button type="submit">Search</button>
+      </form>
 
     </div>
   </nav>
@@ -36,7 +34,6 @@
     <router-outlet></router-outlet>
   </main>
 </div>
-
 <footer class="footer">
   <div class="containerFooter">
     <img src="assets/Andrea Italiano.png" alt="Logo" class="footer-logo">

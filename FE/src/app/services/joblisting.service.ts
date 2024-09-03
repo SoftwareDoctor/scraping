@@ -19,12 +19,11 @@ export class JobListingService {
   }
 
 public searchJobListings(searchTerm: string): Observable<JobListing[]> {
-  let params = new HttpParams().set('title', searchTerm);
-  return this.http.get<JobListing[]>(`${this.apiUrl}/search/`, { params });
+  return this.http.get<JobListing[]>(`${this.apiUrl}/search/?title=${searchTerm}`);
 }
 
 
-  updateJobListing(jobListing: JobListing): Observable<void> {
+public updateJobListing(jobListing: JobListing): Observable<void> {
   return this.http.put<void>(`${this.apiUrl}/job/${jobListing.uuid}`, jobListing);
   }
 

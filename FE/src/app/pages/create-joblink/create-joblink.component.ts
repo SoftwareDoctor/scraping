@@ -23,7 +23,7 @@ export class CreateJoblinkComponent {
   onSubmit() {
     if (this.jobLinkForm.valid) {
       const newJobLink: JobLink = {
-        uuid: '', // L'UUID è generato dal backend
+        uuid: '',
         stringaLink: this.jobLinkForm.value.stringaLink
       };
 
