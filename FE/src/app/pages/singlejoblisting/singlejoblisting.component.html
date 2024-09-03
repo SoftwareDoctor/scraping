@@ -3,8 +3,9 @@
   <div *ngIf="jobListing">
     <p><strong>Title:</strong> {{ jobListing.title }}</p>
     <p><strong>Job Link:</strong> <a [href]="jobListing.jobLink" target="_blank">{{ jobListing.jobLink }}</a></p>
+
     <p><strong>Technologies:</strong>
-      <span *ngFor="let tech of jobListing.technologies" class="badge bg-primary me-1">{{ tech }}</span>
+      <span *ngFor="let tech of jobListing?.technologies" class="badge bg-primary me-1">{{ tech }}</span>
     </p>
   </div>
 </div>

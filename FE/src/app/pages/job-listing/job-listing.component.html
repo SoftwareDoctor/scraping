@@ -15,8 +15,9 @@
         </td>
         <td>
           <div class="action-buttons d-flex justify-content-end">
-            <button class="btn btn-warning btn-sm me-2" (click)="updateJobListing(jobListing)">Edit</button>
-            <button class="btn btn-danger btn-sm" (click)="deleteJobLink(jobListing)">Delete</button>
+            <a [routerLink]="['/singlejoblistingupdate', jobListing.uuid]" class="btn btn-warning btn-sm me-2">Edit</a>
+<!--            <button class="btn btn-warning btn-sm me-2" (click)="updateJobListing(jobListing)">Edit</button>-->
+            <button class="btn btn-danger btn-sm" (click)="openConfirmationDialog(jobListing)">Delete</button>
           </div>
         </td>
       </tr>

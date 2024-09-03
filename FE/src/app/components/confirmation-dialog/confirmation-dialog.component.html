@@ -1,19 +1,13 @@
-<div class='action-modal-container'>
-  <div class='action-modal-x-container'>
-    <div class='action-modal-x-out'>&times</div>
-  </div>
-  <div class='action-modal-confirmation-text'>
-    Sei sicuro di voler eliminare?
-  </div>
-  <div class='action-modal-description-text'>
-    ........................................
-  </div>
-  <div class='action-modal-button-container'>
-    <button class='action-modal-button action-modal-cancel-button'>
-      No
-    </button>
-    <button class='action-modal-button action-modal-delete-button'>
-      Si
-    </button>
-  </div>
+<div class="modal-header">
+  <h4 class="modal-title">Confirm Delete</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to delete this job listing?</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="onCancel()">No</button>
+  <button type="button" class="btn btn-primary" (click)="onConfirm()">Yes</button>
 </div>

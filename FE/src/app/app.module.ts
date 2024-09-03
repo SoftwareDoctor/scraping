@@ -11,9 +11,11 @@ import { CreateJoblinkComponent } from './pages/create-joblink/create-joblink.co
 import { JobListingComponent } from './pages/job-listing/job-listing.component';
 import { UpdateJoblistingComponent } from './pages/update-joblisting/update-joblisting.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-import { SearchByNameComponent } from './pages/search-by-name/search-by-name.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblisting.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,6 @@ import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblis
     JobListingComponent,
     UpdateJoblistingComponent,
     ConfirmationDialogComponent,
-    SearchByNameComponent,
     SinglejoblistingComponent
   ],
   imports: [
@@ -33,7 +34,8 @@ import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblis
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

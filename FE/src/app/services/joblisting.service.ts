@@ -18,24 +18,27 @@ export class JobListingService {
     return this.http.post<void>(`${this.apiUrl}/new`, joblink);
   }
 
- public searchJobListings(searchParams: HttpParams): Observable<JobLink[]> {
-    return this.http.get<JobLink[]>(`${this.apiUrl}/search/`, { params: searchParams });
+public searchJobListings(searchTerm: string): Observable<JobListing[]> {
+  let params = new HttpParams().set('title', searchTerm);
+  return this.http.get<JobListing[]>(`${this.apiUrl}/search/`, { params });
+}
+
+
+  updateJobListing(jobListing: JobListing): Observable<void> {
+  return this.http.put<void>(`${this.apiUrl}/job/${jobListing.uuid}`, jobListing);
   }
 
- public updateJobLink(jobId: string, joblink: JobLink): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/job/${jobId}`, joblink);
-  }
 
   public deleteJobLink(jobId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${jobId}`);
+    return this.http.delete<void>(`${this.apiUrl}/${jobId}`);
   }
 
   public getAllJobListings(): Observable<JobListing[]> {
     return this.http.get<JobListing[]>(`${this.apiUrl}/`);
   }
 
-  public getJobListingById(jobId: string): Observable<JobListing> {
-    return this.http.get<JobListing>(`${this.apiUrl}/${jobId}`);
+  public getJobListingById(id: string): Observable<JobListing> {
+    return this.http.get<JobListing>(`${this.apiUrl}/${id}`);
   }
 }
 

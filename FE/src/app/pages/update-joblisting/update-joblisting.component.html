@@ -1,1 +1,31 @@
-<p>update-joblisting works!</p>
+
+<!--<div class="layout-container special-page">-->
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input id="title" formControlName="title" class="form-control" />
+    <div *ngIf="updateForm.get('title')?.invalid && updateForm.get('title')?.touched" class="text-danger">
+      Title is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="jobLink">Job Link:</label>
+    <input id="jobLink" formControlName="jobLink" class="form-control" readonly  />
+  </div>
+
+  <div formArrayName="technologies" class="form-group technologies">
+    <label>Technologies:</label>
+    <div *ngFor="let tech of technologies.controls; let i = index" class="tech-item">
+      <input [formControlName]="i" class="form-control" placeholder="Technology Name" />
+      <button type="button" class="btn btn-danger" (click)="removeTechnology(i)">Remove</button>
+      <div *ngIf="tech.invalid && tech.touched" class="text-danger">
+        Technology name is required
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="addTechnology()">Add Technology</button>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<!--</div>-->

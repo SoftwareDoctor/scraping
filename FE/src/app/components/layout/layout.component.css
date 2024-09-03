@@ -5,13 +5,19 @@
   margin-left: 170px;
 }
 
-
 .layout-container {
   display: flex;
   flex-direction: column;
   margin: 0;
   height: calc(97vh - 94px);
 }
+
+/*.special-page .layout-container {
+ display: flex;
+  flex-direction: column;
+  margin: 0;
+
+}*/
 
 .navbar {
   background-color: #007bff;
@@ -34,6 +40,7 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  justify-content: center;
 }
 
 .footer-logo {
@@ -57,3 +64,14 @@
   color: #2A446B !important;
 }
 
+@media (max-width: 768px) {
+  .special-page .layout-container {
+
+  }
+}
+
+@media (max-width: 576px) {
+  .special-page .layout-container {
+
+  }
+}
