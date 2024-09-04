@@ -19,9 +19,9 @@ export class UpdateJoblistingComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.updateForm = this.fb.group({
-      title: ['', Validators.required],  // Required
-      jobLink: [''],  // Optional
-      technologies: this.fb.array([]) // Assume required
+      title: ['', Validators.required],
+      jobLink: [''],
+      technologies: this.fb.array([])
     });
   }
 
