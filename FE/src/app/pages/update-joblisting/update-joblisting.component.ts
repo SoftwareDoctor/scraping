@@ -58,10 +58,8 @@ export class UpdateJoblistingComponent implements OnInit {
 
  onSubmit(): void {
    if (this.updateForm.valid) {
-     const updatedJobListing: JobListing = {
-       ...this.updateForm.value,
-       uuid: this.route.snapshot.paramMap.get('id')
-     };
+     const { jobLink, ...updatedJobListing } = this.updateForm.value;
+     updatedJobListing.uuid = this.route.snapshot.paramMap.get('id');
 
      this.jobListingService.updateJobListing(updatedJobListing).subscribe(
        () => {
@@ -75,5 +73,6 @@ export class UpdateJoblistingComponent implements OnInit {
      console.error('Form is invalid');
    }
  }
+
 
 }

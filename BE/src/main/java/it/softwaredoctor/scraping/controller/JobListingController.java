@@ -2,8 +2,8 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-03 10:08:49
- * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
+ * @LastEditTime: 2024-09-05 09:47:09
+ * @FilePath: src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
 package it.softwaredoctor.scraping.controller;
@@ -41,6 +41,7 @@ public class JobListingController {
                     .toUri();
             return ResponseEntity.created(location).build();
         } catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
