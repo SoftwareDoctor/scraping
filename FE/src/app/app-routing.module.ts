@@ -17,7 +17,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'home', component: HomeComponent },
-       { path: 'search', component: SearchbynameComponent },
+      { path: 'search', component: SearchbynameComponent },
       { path: 'create', component: CreateJoblinkComponent },
       { path: 'all', component: JobListingComponent },
       { path: 'singlejoblistingupdate/:id', component: UpdateJoblistingComponent },

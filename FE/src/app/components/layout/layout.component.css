@@ -1,46 +1,49 @@
-.navbar .navbar-brand.custom-navbar-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2A446B;
-  margin-left: 170px;
+/* Fissa la navbar in alto */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F2F3F3 !important;
+  padding: 5px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+/* Fissa il footer in basso */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  height: 60px;
 }
 
 .layout-container {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  height: calc(97vh - 94px);
-}
-
-/*.special-page .layout-container {
- display: flex;
-  flex-direction: column;
-  margin: 0;
-
-}*/
-
-.navbar {
-  background-color: #007bff;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 60px;
+  height: calc(100vh - 130px);
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .navbar-logo {
   max-height: 40px;
+  padding-left: 20px;
 }
 
 .navbar .form-inline {
   margin-left: auto;
-}
-
-.footer {
-  background-color: #007bff;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  justify-content: center;
+  padding-right: 20px;
 }
 
 .footer-logo {
@@ -53,25 +56,46 @@
   align-items: center;
 }
 
-.btn-outline-light {
-  border: none;
-  background-color: #fff;
-  color: #007bff;
-  transition: background-color 0.3s;
-}
-
 .text-muted {
   color: #2A446B !important;
+  font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .special-page .layout-container {
-
-  }
+.text-muted-footer {
+  color: #2A446B !important;
+ font-weight: bold;
 }
 
-@media (max-width: 576px) {
-  .special-page .layout-container {
+.btn-outline-light {
+  color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  }
+.btn-outline-light:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.form-control {
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.navbar .form-inline .form-control {
+  width: 250px;
+  max-width: 100%;
+}
+
+.btn {
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+
+.navbar .navbar-brand.custom-navbar-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2A446B !important;
+  margin-left: 20px;
 }

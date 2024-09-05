@@ -2,8 +2,8 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:41:44
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-03 10:16:09
- * @FilePath: BE/src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
+ * @LastEditTime: 2024-09-05 09:00:22
+ * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
 package it.softwaredoctor.scraping.service;
@@ -83,10 +83,28 @@ public class JobListingservice {
     }
 
     public List<JobListingDto> listaJobListings(String title) {
-        List<JobListing> lista = jobListingRepository.findByTitleContaining(title);
-
+//        List<JobListing> lista = jobListingRepository.findByTitleContaining(title);
+//
+//        List<JobListingDto> listaDto = new ArrayList<>();
+//        for (JobListing jobListing : lista) {
+//            JobListingDto dto = JobListingDto.toDto(jobListing);
+//            listaDto.add(dto);
+//        }
+//        return listaDto;
+        
+        String lowerCaseTitle = title.toLowerCase();
+        List<JobListing> lista = jobListingRepository.findAll();
+        List<JobListing> listaFiltrata = lista.stream()
+                .filter(jobListing -> jobListing.getTitle().toLowerCase().contains(lowerCaseTitle))
+                .collect(Collectors.toList());
+        
         List<JobListingDto> listaDto = new ArrayList<>();
-        for (JobListing jobListing : lista) {
+
+//        List<JobListingDto> listaDto = listaFiltrata.stream()
+//                .map(JobListingDto::toDto)
+//                .collect(Collectors.toList());
+        
+        for (JobListing jobListing : listaFiltrata) {
             JobListingDto dto = JobListingDto.toDto(jobListing);
             listaDto.add(dto);
         }
