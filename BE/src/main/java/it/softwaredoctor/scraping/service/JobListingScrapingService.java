@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:42:17
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-05 07:56:37
+ * @LastEditTime: 2024-09-06 09:51:04
  * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobListingScrapingService.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */

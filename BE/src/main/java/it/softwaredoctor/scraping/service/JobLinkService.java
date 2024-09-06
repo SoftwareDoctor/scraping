@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:40:50
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-05 09:53:34
+ * @LastEditTime: 2024-09-06 10:18:37
  * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobLinkService.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -39,43 +39,7 @@ public class JobLinkService {
     private final JobListingRepository jobListingRepository;
     private final TechnologyRepository technologyRepository;
 
-    public String fetchDataFromUrl(String urlString) throws IOException {
-        int retryCount = 0;
-        int maxRetries = 3;
-        long retryDelay = 2000; 
 
-        while (retryCount < maxRetries) {
-            try {
-                URL url = new URL(urlString);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                int responseCode = connection.getResponseCode();
-
-                if (responseCode == 429) {
-                    try {
-                        Thread.sleep(retryDelay);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        throw new IOException("Interruzione durante l'attesa per retry", e);
-                    }
-                    retryCount++;
-                    retryDelay *= 2; 
-                } else if (responseCode == 200) {
-                    try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                        return in.lines().collect(Collectors.joining("\n"));
-                    }
-                } else {
-                    throw new IOException("Errore HTTP: " + responseCode);
-                }
-            } catch (IOException e) {
-                if (retryCount == maxRetries - 1) {
-                    throw e; 
-                }
-            }
-        }
-
-        throw new IOException("Numero massimo di retry superato");
-    }
 
     @Transactional
     public UUID saveLink(JobLinkDto jobLinkDto) throws IOException {
@@ -87,12 +51,11 @@ public class JobLinkService {
             JobLink joblink = JobLink.builder()
                     .stringaLink(jobLinkDto.getStringaLink())
                     .build();
-            
-            String title = fetchDataFromUrl(joblink.getStringaLink());
 
+            String titleNew = jobListingScrapingService.extractTitleFromUrl(jobLinkDto.getStringaLink());
             JobListing jobListing = JobListing.builder()
                     .jobLink(joblink)
-                    .title(title)
+                    .title(titleNew)
                     .build();
 
             List<String> extractedTechnologies = jobListingScrapingService.extractTechnologiesFromUrl(joblink.getStringaLink());
