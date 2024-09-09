@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:41:44
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-09 12:59:34
+ * @LastEditTime: 2024-09-09 13:20:15
  * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -50,32 +50,7 @@ public class JobListingservice {
                 .map(JobListingDto::toDto)
                 .orElseThrow(() -> new RuntimeException("JobListing not found"));
     }
-
-//    public void updateJobListing(UUID id, JobListingDto jobListing) throws IOException {
-//        JobListing existingJobListing = jobListingRepository.findByUuid(id)
-//                .orElseThrow(() -> new EntityNotFoundException("JobListing not found"));
-//
-//        existingJobListing.setTitle(jobListing.getTitle());
-//
-//        List<Technology> currentTechnologies = new ArrayList<>(existingJobListing.getTechnologies());
-//        existingJobListing.getTechnologies().clear();
-//
-//        if (jobListing.getTechnologies() != null) {
-//            for (String technologyName : jobListing.getTechnologies()) {
-//                Technology technology = technologyRepository.findByName(technologyName)
-//                        .orElseThrow(() -> new EntityNotFoundException("Technology not found: " + technologyName));
-//                existingJobListing.getTechnologies().add(technology);
-//                technology.setJobListing(existingJobListing);
-//            }
-//        }
-//
-//        if (jobListing.getJobLink() != null) {
-//            JobLink jobLink = jobLinkRepository.findByStringaLink(jobListing.getJobLink())
-//                    .orElseThrow(() -> new EntityNotFoundException("JobLink not found: " + jobListing.getJobLink()));
-//            existingJobListing.setJobLink(jobLink);
-//        }
-//        jobListingRepository.save(existingJobListing);
-//    }
+    
 
     public void updateJobListing(UUID id, JobListingDto jobListing) throws IOException {
         JobListing existingJobListing = jobListingRepository.findByUuid(id)
@@ -124,9 +99,7 @@ public class JobListingservice {
         jobListingRepository.save(existingJobListing);
     }
 
-
-
-
+    
 
     @Transactional
     public void deleteByUUID(UUID uuid) {

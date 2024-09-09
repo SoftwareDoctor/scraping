@@ -49,26 +49,22 @@ export class UpdateJoblistingComponent implements OnInit {
      }
    }
 
-get technologies(): FormArray {
-    return this.updateForm.get('technologies') as FormArray;
-  }
-
-openTechnologyDialog(): void {
-  const dialogRef = this.dialog.open(ListatechComponent, {
-    width: '250px',
-    data: { technologies: this.technologiesList }
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.addTechnology(result);
+  get technologies(): FormArray {
+      return this.updateForm.get('technologies') as FormArray;
     }
-  });
-}
 
+  openTechnologyDialog(): void {
+    const dialogRef = this.dialog.open(ListatechComponent, {
+      width: '250px',
+      data: { technologies: this.technologiesList }
+    });
 
-
-
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addTechnology(result);
+      }
+    });
+  }
 
    setTechnologies(technologies: string[]): void {
      const techFGs = technologies.map(tech => this.fb.control(tech, Validators.required));
@@ -79,20 +75,16 @@ openTechnologyDialog(): void {
 addTechnology(tech: string): void {
   const techLower = tech.toLowerCase();
   console.log('Attempting to add technology:', techLower);
-
   const existing = this.technologies.controls.some(control => control.value.toLowerCase() === techLower);
-
   if (existing) {
     this.errorMessage = 'Technology already added';
    alert('Technology already added');
     return;
   }
-
   this.errorMessage = null;
   this.technologies.push(this.fb.control(tech, Validators.required));
   console.log('Technology added:', tech);
 }
-
 
   removeTechnology(index: number): void {
     this.technologies.removeAt(index);
@@ -115,10 +107,4 @@ onSubmit(): void {
      console.error('Form is invalid');
    }
  }
-
-
-
-
-
-
 }
