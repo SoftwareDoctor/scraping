@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:41:44
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-06 11:49:59
+ * @LastEditTime: 2024-09-09 12:59:34
  * @FilePath: src/main/java/it/softwaredoctor/scraping/service/JobListingservice.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -11,9 +11,11 @@ package it.softwaredoctor.scraping.service;
 import it.softwaredoctor.scraping.dto.JobListingDto;
 import it.softwaredoctor.scraping.model.JobLink;
 import it.softwaredoctor.scraping.model.JobListing;
+import it.softwaredoctor.scraping.model.ListaTech;
 import it.softwaredoctor.scraping.model.Technology;
 import it.softwaredoctor.scraping.repository.JobLinkRepository;
 import it.softwaredoctor.scraping.repository.JobListingRepository;
+import it.softwaredoctor.scraping.repository.ListTechRepository;
 import it.softwaredoctor.scraping.repository.TechnologyRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -21,10 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -34,6 +33,7 @@ public class JobListingservice {
     private final JobLinkRepository jobLinkRepository;
     private final JobListingRepository jobListingRepository;
     private final TechnologyRepository technologyRepository;
+    private final ListTechRepository listTechRepository; 
 
     public List<JobListingDto> getAllJobListings (){
         List<JobListing> jobListings = jobListingRepository.findAll();
@@ -45,36 +45,87 @@ public class JobListingservice {
 
     public JobListingDto getJobListing(UUID uuidJobListing) {
         Optional<JobListing> jobListing = jobListingRepository.findByUuid(uuidJobListing);
+        jobListing.get().getTechnologies().sort(Comparator.comparing(Technology::getName));
         return jobListing
                 .map(JobListingDto::toDto)
                 .orElseThrow(() -> new RuntimeException("JobListing not found"));
     }
 
-    public void updateJobListing(JobListingDto jobListing) throws IOException {
-        JobListing existingJobListing = jobListingRepository.findByUuid(jobListing.getUuid())
+//    public void updateJobListing(UUID id, JobListingDto jobListing) throws IOException {
+//        JobListing existingJobListing = jobListingRepository.findByUuid(id)
+//                .orElseThrow(() -> new EntityNotFoundException("JobListing not found"));
+//
+//        existingJobListing.setTitle(jobListing.getTitle());
+//
+//        List<Technology> currentTechnologies = new ArrayList<>(existingJobListing.getTechnologies());
+//        existingJobListing.getTechnologies().clear();
+//
+//        if (jobListing.getTechnologies() != null) {
+//            for (String technologyName : jobListing.getTechnologies()) {
+//                Technology technology = technologyRepository.findByName(technologyName)
+//                        .orElseThrow(() -> new EntityNotFoundException("Technology not found: " + technologyName));
+//                existingJobListing.getTechnologies().add(technology);
+//                technology.setJobListing(existingJobListing);
+//            }
+//        }
+//
+//        if (jobListing.getJobLink() != null) {
+//            JobLink jobLink = jobLinkRepository.findByStringaLink(jobListing.getJobLink())
+//                    .orElseThrow(() -> new EntityNotFoundException("JobLink not found: " + jobListing.getJobLink()));
+//            existingJobListing.setJobLink(jobLink);
+//        }
+//        jobListingRepository.save(existingJobListing);
+//    }
+
+    public void updateJobListing(UUID id, JobListingDto jobListing) throws IOException {
+        JobListing existingJobListing = jobListingRepository.findByUuid(id)
                 .orElseThrow(() -> new EntityNotFoundException("JobListing not found"));
 
         existingJobListing.setTitle(jobListing.getTitle());
 
+        // rimuovere tutte le tecnologie esistenti
         List<Technology> currentTechnologies = new ArrayList<>(existingJobListing.getTechnologies());
         existingJobListing.getTechnologies().clear();
 
-        if (jobListing.getTechnologies() != null) {
-            for (String technologyName : jobListing.getTechnologies()) {
-                Technology technology = technologyRepository.findByName(technologyName)
+        // Mappare per tenere traccia delle tecnologie già esistenti nel database
+        Map<String, Technology> technologyMap = new HashMap<>();
+        for (Technology tech : currentTechnologies) {
+            technologyMap.put(tech.getName(), tech);
+        }
+
+        // Aggiungere le nuove tecnologie basate sui nomi forniti
+        for (String technologyName : jobListing.getTechnologies()) {
+            // Controllare se la tecnologia già esiste nel mapping
+            Technology technology = technologyMap.get(technologyName);
+
+            if (technology == null) {
+                // La tecnologia non esiste, quindi recuperare la lista delle tecnologie disponibili
+                ListaTech listaTech = listTechRepository.findBynameTechnology(technologyName)
                         .orElseThrow(() -> new EntityNotFoundException("Technology not found: " + technologyName));
-                existingJobListing.getTechnologies().add(technology);
+
+                // Creare un nuovo oggetto Technology
+                technology = new Technology();
+                technology.setName(technologyName);
                 technology.setJobListing(existingJobListing);
+
+                // Aggiungere l'oggetto Technology alla lista
+                technologyMap.put(technologyName, technology);
+            } else {
+                // Associare la tecnologia esistente al JobListing
+                technology.setJobListing(existingJobListing);
+            }
+            // Aggiungere la tecnologia alla lista di tecnologie del JobListing solo se non esiste già
+            if (!existingJobListing.getTechnologies().contains(technology)) {
+                existingJobListing.getTechnologies().add(technology);
             }
         }
 
-        if (jobListing.getJobLink() != null) {
-            JobLink jobLink = jobLinkRepository.findByStringaLink(jobListing.getJobLink())
-                    .orElseThrow(() -> new EntityNotFoundException("JobLink not found: " + jobListing.getJobLink()));
-            existingJobListing.setJobLink(jobLink);
-        }
+        // Salva il JobListing aggiornato
         jobListingRepository.save(existingJobListing);
     }
+
+
+
 
 
     @Transactional

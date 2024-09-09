@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-27 13:35:39
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-09-06 10:42:37
+ * @LastEditTime: 2024-09-09 09:38:47
  * @FilePath: src/main/java/it/softwaredoctor/scraping/controller/JobListingController.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -81,15 +81,11 @@ public class JobListingController {
         return ResponseEntity.ok(jobListingDto);
     }
 
-    @PutMapping("/job/{uuid}")
-    public ResponseEntity<Void> updateJobListing(@PathVariable UUID uuid, @RequestBody JobListingDto jobListing) {
-        try {
-            jobListing.setUuid(uuid);
-            jobListingservice.updateJobListing(jobListing);
-            return ResponseEntity.noContent().build();
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    @PatchMapping("/job/{uuid}")
+    public ResponseEntity<Void> updateJobListing(@PathVariable UUID uuid, @RequestBody JobListingDto jobListing) throws IOException {
+        //            jobListing.setUuid(uuid);
+        jobListingservice.updateJobListing(uuid, jobListing);
+        return ResponseEntity.noContent().build();
     }
     
     

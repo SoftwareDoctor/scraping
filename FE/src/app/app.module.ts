@@ -14,6 +14,12 @@ import { SinglejoblistingComponent } from './pages/singlejoblisting/singlejoblis
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SearchbynameComponent } from './pages/searchbyname/searchbyname.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import {ListatechComponent } from './components/listatech/listatech.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UpdateJoblistingComponent,
     ConfirmationDialogComponent,
     SinglejoblistingComponent,
-    SearchbynameComponent
+    SearchbynameComponent,
+    ListatechComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +42,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule,
+    MatChipsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

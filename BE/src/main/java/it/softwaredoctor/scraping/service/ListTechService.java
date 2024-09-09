@@ -2,7 +2,7 @@
  * @Author: SoftwareDoctor andrea_italiano87@yahoo.com
  * @Date: 2024-08-28 08:27:18
  * @LastEditors: SoftwareDoctor andrea_italiano87@yahoo.com
- * @LastEditTime: 2024-08-28 12:03:02
+ * @LastEditTime: 2024-09-09 12:25:36
  * @FilePath: src/main/java/it/softwaredoctor/scraping/service/ListTechService.java
  * @Description: 这是默认设置, 可以在设置》工具》File Description中进行配置
  */
@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,9 @@ public class ListTechService {
     }
 
     public List<ListaTech> getAllTechnologies() {
-        return listTechRepository.findAll();
+        List<ListaTech> technologies = listTechRepository.findAll();
+        Collections.sort(technologies, Comparator.comparing(ListaTech::getNameTechnology));
+        return technologies;
     }
 
     public void updateTechnology(Long id, String nameTecnology) {

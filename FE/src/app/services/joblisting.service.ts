@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { apiUrl } from '../../environments/environment';
 import { JobLink } from '../models/joblink/joblink';
 import { JobListing } from '../models/joblisting/joblisting';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,7 @@ public searchJobListings(searchTerm: string): Observable<JobListing[]> {
 
 
 public updateJobListing(jobListing: JobListing): Observable<void> {
-  return this.http.put<void>(`${this.apiUrl}/job/${jobListing.uuid}`, jobListing);
+  return this.http.patch<void>(`${this.apiUrl}/job/${jobListing.uuid}`, jobListing);
   }
 
 
@@ -39,5 +41,17 @@ public updateJobListing(jobListing: JobListing): Observable<void> {
   public getJobListingById(id: string): Observable<JobListing> {
     return this.http.get<JobListing>(`${this.apiUrl}/${id}`);
   }
+
+public getListaTech(): Observable<any[]>{
+  return this.http.get<any[]>(`http://localhost:8080/api/v1/tech/all`)
+    .pipe(
+      map(technologies => technologies.sort())
+    );
+}
+
+
+
+
+
 }
 

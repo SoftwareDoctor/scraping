@@ -1,5 +1,8 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
 
-<!--<div class="layout-container special-page">-->
+
 <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="title">Title:</label>
@@ -11,7 +14,7 @@
 
   <div class="form-group">
     <label for="jobLink">Job Link:</label>
-    <input id="jobLink" formControlName="jobLink" class="form-control" readonly  />
+    <input id="jobLink" formControlName="jobLink" class="form-control" readonly />
   </div>
 
   <div formArrayName="technologies" class="form-group technologies">
@@ -23,9 +26,8 @@
         Technology name is required
       </div>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="addTechnology()">Add Technology</button>
+    <button type="button" class="btn btn-secondary" (click)="openTechnologyDialog()">Add Technology</button>
   </div>
 
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
-<!--</div>-->
