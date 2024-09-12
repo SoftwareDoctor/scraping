@@ -48,8 +48,7 @@ ng serve
 ```
 ### Progetto
 
-`[![Job Scraping Demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)` crea un'anteprima cliccabile del video che rimanda a YouTube.
-- Sostituisci `VIDEO_ID` con l'ID del video che si trova nell'URL di YouTube (ad esempio, per un video con URL `https://www.youtube.com/watch?v=dQw4w9WgXcQ`, l'ID è `dQw4w9WgXcQ`).
+`[![Guarda il video "Job Scraping"](https://img.youtube.com/vi/fHZnOEc4r10/maxresdefault.jpg)](https://youtu.be/fHZnOEc4r10)` 
 
 ## Autore
 Progetto sviluppato da Andrea Italiano

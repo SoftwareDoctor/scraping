@@ -24,3 +24,35 @@
 .alert-danger-icon .message {
   flex: 1;
 }
+
+
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+.container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2A446B !important;
+  margin-bottom: 20px;
+}
+
+/* Stile per l'input del form */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.btn-primary {
+  margin-top: 10px;
+}
+
+
