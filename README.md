@@ -48,7 +48,7 @@ ng serve
 ```
 ### Progetto
 
-[![Guarda il video "Job Scraping"](https://img.youtube.com/vi/fHZnOEc4r10/maxresdefault.jpg)](https://youtu.be/fHZnOEc4r10)
+[![Guarda il video "Job Scraping"](https://img.youtube.com/vi/fHZnOEc4r10/0.jpg)](https://youtu.be/fHZnOEc4r10)
 
 ## Autore
 Progetto sviluppato da Andrea Italiano
